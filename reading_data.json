@@ -8,19 +8,26 @@
   },
   "streak": {
     "days_read": [
+      "2026-08-04",
+      "2026-08-05",
+      "2026-08-06",
+      "2026-08-07",
+      "2026-08-12",
       "2026-08-14"
     ],
     "current_streak": 1,
     "days_in_month": 31,
     "first_weekday": 6,
-    "current_month_days_read": [
-      14
-    ]
+    "current_month_days_read": [4, 5, 6, 7, 12, 14]
   },
   "goal": {
-    "finished_books": [],
+    "finished_books": [
+      "Moby-Dick or, The Whale",
+      "Dune Messiah",
+      "Children of Dune"
+    ],
     "books_read_this_year": 3,
     "yearly_goal": 5
   },
-  "last_updated": "2026-08-14T15:27:35.767994+00:00"
+  "last_updated": "2026-08-14T16:00:00Z"
 }
