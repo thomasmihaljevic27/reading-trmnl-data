@@ -1,10 +1,10 @@
 {
   "book": {
-    "title": "Project Hail Mary",
-    "author": "Andy Weir",
-    "isbn": "9780593135204",
-    "current_page": 1,
-    "total_pages": 496
+    "title": "Dungeon Cralwer Carl",
+    "author": "Matt Dinniman",
+    "isbn": "9798217287161",
+    "current_page": 10,
+    "total_pages": 427
   },
   "streak": {
     "days_read": [],
@@ -15,8 +15,8 @@
   },
   "goal": {
     "finished_books": [],
-    "books_read_this_year": 0,
-    "yearly_goal": 40
+    "books_read_this_year": 3,
+    "yearly_goal": 5,
   },
   "last_updated": "2026-08-13T00:00:00Z"
 }
