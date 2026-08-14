@@ -36,13 +36,14 @@ from reading_lib import load_data, save_data, recompute_streak, recompute_month_
 # --- EDIT THESE THREE VALUES ---
 
 FINISHED_BOOKS_THIS_YEAR = [
-    "Example Book One",
-    "Example Book Two",
+    "Moby-Dick or, The Whale",
+    "Dune Messiah",
+    "Children of Dune",
 ]
 
-YEARLY_GOAL = 40
+YEARLY_GOAL = 5
 
-DAYS_READ_THIS_MONTH = [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+DAYS_READ_THIS_MONTH = [4, 5, 6, 7, 12]
 
 # --- END EDITABLE SECTION ---
 
