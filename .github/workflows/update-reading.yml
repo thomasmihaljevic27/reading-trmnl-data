@@ -1,0 +1,45 @@
+# Triggered remotely by the iOS Shortcut, which POSTs to GitHub's
+# `repository_dispatch` API endpoint. This is the glue that lets a phone
+# tap turn into "run a Python script and commit the result" -- no server
+# of your own required.
+#
+# Two different credentials are involved and they do two different jobs:
+#   - The PAT (Personal Access Token) lives in the Shortcut and only
+#     needs permission to trigger this workflow.
+#   - The GITHUB_TOKEN below is generated automatically by GitHub for
+#     every workflow run and never leaves GitHub's servers. It's what
+#     actually pushes the commit back to the repo, via the
+#     `permissions: contents: write` line.
+name: Update reading data
+
+on:
+  repository_dispatch:
+    types: [margins-update]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run update script
+        env:
+          CURRENT_PAGE: ${{ github.event.client_payload.current_page }}
+          TOTAL_PAGES: ${{ github.event.client_payload.total_pages }}
+          SAME_BOOK: ${{ github.event.client_payload.same_book }}
+          BOOK_FINISHED: ${{ github.event.client_payload.book_finished }}
+          RAW_OCR_TEXT: ${{ github.event.client_payload.raw_ocr_text }}
+        run: python update_reading_data.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "reading-bot"
+          git config user.email "actions@github.com"
+          git add reading_data.json
+          # skip the commit (rather than fail the run) if a same-day
+          # re-run produced no actual changes
+          git diff --quiet --cached || git commit -m "Update reading data"
+          git push
