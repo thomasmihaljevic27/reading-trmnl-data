@@ -1,0 +1,22 @@
+{
+  "book": {
+    "title": "Project Hail Mary",
+    "author": "Andy Weir",
+    "isbn": "9780593135204",
+    "current_page": 1,
+    "total_pages": 496
+  },
+  "streak": {
+    "days_read": [],
+    "current_streak": 0,
+    "days_in_month": 31,
+    "first_weekday": 6,
+    "current_month_days_read": []
+  },
+  "goal": {
+    "finished_books": [],
+    "books_read_this_year": 0,
+    "yearly_goal": 40
+  },
+  "last_updated": "2026-08-13T00:00:00Z"
+}
