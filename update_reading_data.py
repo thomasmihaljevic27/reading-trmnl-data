@@ -26,6 +26,10 @@ INPUTS (all set by the GitHub Actions workflow from client_payload):
   RAW_OCR_TEXT   - the full Live Text dump of the screenshot -- only
                    parsed for title/author when SAME_BOOK is false,
                    since the same-book case already has that data
+
+v2: goal.finished_books now stores {title, author, isbn} objects instead
+of bare title strings, so the yearly_goal TRMNL plugin can show cover
+art for each finished book. _finish_book() below does the ISBN lookup.
 """
 
 import os
@@ -66,58 +70,3 @@ def main():
         data["book"]["total_pages"] = total_pages
 
         if book_finished:
-            # The Shortcut only sends this when current_page reached
-            # total_pages AND you confirmed the "Finished?" prompt --
-            # never inferred silently, since OCR misreads near the end
-            # of a book (e.g. 42/427 vs 427/427) are exactly the kind
-            # of thing worth a human glance before it counts.
-            _finish_book(data, data["book"]["title"])
-
-    else:
-        # --- A different book is now showing: title changed ---
-        if book_finished:
-            # You confirmed via the prompt that the PREVIOUS book (still
-            # in `data["book"]` at this point) was finished.
-            _finish_book(data, data["book"]["title"])
-
-        new_title, new_author = parse_title_author_from_ocr(raw_ocr_text)
-        isbn = lookup_isbn(new_title, new_author) if new_title else ""
-
-        data["book"] = {
-            "title": new_title or "(unrecognized)",
-            "author": new_author,
-            "isbn": isbn,
-            "current_page": current_page,
-            "total_pages": total_pages,
-        }
-
-    # --- Recompute every derived field from the source-of-truth lists ---
-    data["streak"]["current_streak"] = recompute_streak(data["streak"]["days_read"])
-    days_in_month, first_weekday, current_month_days_read = recompute_month_view(
-        data["streak"]["days_read"]
-    )
-    data["streak"]["days_in_month"] = days_in_month
-    data["streak"]["first_weekday"] = first_weekday
-    data["streak"]["current_month_days_read"] = current_month_days_read
-
-    data["last_updated"] = datetime.now(timezone.utc).isoformat()
-
-    save_data(data)
-    print(
-        f"same_book={same_book} finished={book_finished}  "
-        f"book={data['book']['title']!r}  "
-        f"page={data['book']['current_page']}/{data['book']['total_pages']}  "
-        f"streak={data['streak']['current_streak']}  "
-        f"goal={data['goal']['books_read_this_year']}/{data['goal']['yearly_goal']}"
-    )
-
-
-def _finish_book(data, title):
-    """Record a finished book: append to the list, count derives from len()."""
-    if title and title not in data["goal"]["finished_books"]:
-        data["goal"]["finished_books"].append(title)
-    data["goal"]["books_read_this_year"] = len(data["goal"]["finished_books"])
-
-
-if __name__ == "__main__":
-    main()
