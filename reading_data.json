@@ -28,11 +28,11 @@
     ]
   },
   "goal": {
-    "finished_books": [
-      "Moby-Dick or, The Whale",
-      "Dune Messiah",
-      "Children of Dune"
-    ],
+"finished_books": [
+  {"title": "Moby-Dick or, The Whale", "author": "Herman Melville", "isbn": "9780142437247"},
+  {"title": "Dune Messiah", "author": "Frank Herbert", "isbn": "9780593098233"},
+  {"title": "Children of Dune", "author": "Frank Herbert", "isbn": "9780593098240"}
+],
     "books_read_this_year": 3,
     "yearly_goal": 5
   },
