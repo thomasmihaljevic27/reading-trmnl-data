@@ -35,4 +35,21 @@
         "title": "Moby-Dick",
         "author": "Herman Melville",
         "isbn": "9780679783275",
-        "cover_url": "https://raw.githubusercontent.com/thomasmihaljevic27/reading-trmnl-data/main/co
+        "cover_url": "https://raw.githubusercontent.com/thomasmihaljevic27/reading-trmnl-data/main/covers/moby_dick_cover.jpg"
+      },
+      {
+        "title": "Dune Messiah",
+        "author": "Frank Herbert",
+        "isbn": "9780593098233"
+      },
+      {
+        "title": "Children of Dune",
+        "author": "Frank Herbert",
+        "isbn": "9780593098240"
+      }
+    ],
+    "books_read_this_year": 3,
+    "yearly_goal": 5
+  },
+  "last_updated": "2026-08-16T02:28:46.767589+00:00"
+}
