@@ -14,9 +14,10 @@
       "2026-08-07",
       "2026-08-12",
       "2026-08-14",
+      "2026-08-15",
       "2026-08-16"
     ],
-    "current_streak": 1,
+    "current_streak": 2,
     "days_in_month": 31,
     "first_weekday": 6,
     "current_month_days_read": [
@@ -26,6 +27,7 @@
       7,
       12,
       14,
+      15,
       16
     ]
   },
