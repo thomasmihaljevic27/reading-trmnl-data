@@ -70,3 +70,74 @@ def main():
         data["book"]["total_pages"] = total_pages
 
         if book_finished:
+            # The Shortcut only sends this when current_page reached
+            # total_pages AND you confirmed the "Finished?" prompt --
+            # never inferred silently, since OCR misreads near the end
+            # of a book (e.g. 42/427 vs 427/427) are exactly the kind
+            # of thing worth a human glance before it counts.
+            _finish_book(data, data["book"]["title"], data["book"]["author"])
+
+    else:
+        # --- A different book is now showing: title changed ---
+        if book_finished:
+            # You confirmed via the prompt that the PREVIOUS book (still
+            # in `data["book"]` at this point) was finished.
+            _finish_book(data, data["book"]["title"], data["book"]["author"])
+
+        new_title, new_author = parse_title_author_from_ocr(raw_ocr_text)
+        isbn = lookup_isbn(new_title, new_author) if new_title else ""
+
+        data["book"] = {
+            "title": new_title or "(unrecognized)",
+            "author": new_author,
+            "isbn": isbn,
+            "current_page": current_page,
+            "total_pages": total_pages,
+        }
+
+    # --- Recompute every derived field from the source-of-truth lists ---
+    data["streak"]["current_streak"] = recompute_streak(data["streak"]["days_read"])
+    days_in_month, first_weekday, current_month_days_read = recompute_month_view(
+        data["streak"]["days_read"]
+    )
+    data["streak"]["days_in_month"] = days_in_month
+    data["streak"]["first_weekday"] = first_weekday
+    data["streak"]["current_month_days_read"] = current_month_days_read
+
+    data["last_updated"] = datetime.now(timezone.utc).isoformat()
+
+    save_data(data)
+    print(
+        f"same_book={same_book} finished={book_finished}  "
+        f"book={data['book']['title']!r}  "
+        f"page={data['book']['current_page']}/{data['book']['total_pages']}  "
+        f"streak={data['streak']['current_streak']}  "
+        f"goal={data['goal']['books_read_this_year']}/{data['goal']['yearly_goal']}"
+    )
+
+
+def _finish_book(data, title, author=""):
+    """
+    Record a finished book: append to the list, count derives from len().
+
+    v2: finished_books now stores {title, author, isbn} dicts instead of
+    bare title strings, so yearly_goal.liquid can render cover art.
+    Reuses lookup_isbn() -- the same Open Library helper this script
+    already calls for the currently-reading book -- so there's no second
+    ISBN-lookup implementation to keep in sync.
+    """
+    if not title:
+        return
+    existing_titles = {b["title"] for b in data["goal"]["finished_books"]}
+    if title not in existing_titles:
+        isbn = lookup_isbn(title, author)
+        data["goal"]["finished_books"].append({
+            "title": title,
+            "author": author,
+            "isbn": isbn,
+        })
+    data["goal"]["books_read_this_year"] = len(data["goal"]["finished_books"])
+
+
+if __name__ == "__main__":
+    main()
