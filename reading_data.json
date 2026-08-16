@@ -3,7 +3,7 @@
     "title": "Dungeon Crawler Carl",
     "author": "Matt Dinniman",
     "isbn": "9798217287161",
-    "current_page": 10,
+    "current_page": 47,
     "total_pages": 427
   },
   "streak": {
@@ -13,7 +13,8 @@
       "2026-08-06",
       "2026-08-07",
       "2026-08-12",
-      "2026-08-14"
+      "2026-08-14",
+      "2026-08-16"
     ],
     "current_streak": 1,
     "days_in_month": 31,
@@ -24,17 +25,30 @@
       6,
       7,
       12,
-      14
+      14,
+      16
     ]
   },
   "goal": {
-"finished_books": [
-  {"title": "Moby-Dick or, The Whale", "author": "Herman Melville", "isbn": "9780679783275"},
-  {"title": "Dune Messiah", "author": "Frank Herbert", "isbn": "9780593098233"},
-  {"title": "Children of Dune", "author": "Frank Herbert", "isbn": "9780593098240"}
-],
+    "finished_books": [
+      {
+        "title": "Moby-Dick or, The Whale",
+        "author": "Herman Melville",
+        "isbn": "9780679783275"
+      },
+      {
+        "title": "Dune Messiah",
+        "author": "Frank Herbert",
+        "isbn": "9780593098233"
+      },
+      {
+        "title": "Children of Dune",
+        "author": "Frank Herbert",
+        "isbn": "9780593098240"
+      }
+    ],
     "books_read_this_year": 3,
     "yearly_goal": 5
   },
-  "last_updated": "2026-08-14T23:41:34.749788+00:00"
+  "last_updated": "2026-08-16T02:28:46.767589+00:00"
 }
