@@ -15,9 +15,10 @@
       "2026-08-12",
       "2026-08-14",
       "2026-08-15",
-      "2026-08-16"
+      "2026-08-16",
+      "2026-08-17"
     ],
-    "current_streak": 2,
+    "current_streak": 4,
     "days_in_month": 31,
     "first_weekday": 6,
     "current_month_days_read": [
@@ -28,7 +29,8 @@
       12,
       14,
       15,
-      16
+      16,
+      17
     ]
   },
   "goal": {
@@ -53,5 +55,5 @@
     "books_read_this_year": 3,
     "yearly_goal": 5
   },
-  "last_updated": "2026-08-16T20:47:10.311609+00:00"
+  "last_updated": "2026-08-17T21:20:18.656537+00:00"
 }
