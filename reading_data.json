@@ -3,7 +3,7 @@
     "title": "Dungeon Crawler Carl",
     "author": "Matt Dinniman",
     "isbn": "9798217287161",
-    "current_page": 87,
+    "current_page": 102,
     "total_pages": 427
   },
   "streak": {
@@ -18,9 +18,10 @@
       "2026-08-16",
       "2026-08-17",
       "2026-08-18",
-      "2026-08-19"
+      "2026-08-19",
+      "2026-08-20"
     ],
-    "current_streak": 6,
+    "current_streak": 7,
     "days_in_month": 31,
     "first_weekday": 6,
     "current_month_days_read": [
@@ -34,7 +35,8 @@
       16,
       17,
       18,
-      19
+      19,
+      20
     ]
   },
   "goal": {
@@ -59,5 +61,5 @@
     "books_read_this_year": 3,
     "yearly_goal": 5
   },
-  "last_updated": "2026-08-19T02:44:16.674682+00:00"
+  "last_updated": "2026-08-20T02:45:34.262698+00:00"
 }
