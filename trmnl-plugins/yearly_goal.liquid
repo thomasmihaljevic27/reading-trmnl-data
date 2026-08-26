@@ -1,0 +1,37 @@
+{% comment %}
+YEARLY GOAL — Private Plugin, Polling strategy.
+Same polling URL as the other two plugins; only reads the `goal` key.
+Requires goal.finished_books to be a list of {title, author, isbn}
+objects -- see update_reading_data.py's _finish_book() and
+bootstrap_import.py. An individual entry may also include an optional
+cover_url, which takes priority over the ISBN-based Open Library lookup
+when present (used for editions Open Library doesn't have correct cover
+art for -- see the Moby-Dick entry in reading_data.json for an example).
+v4: dropped the inline height:100% + manual flexbox override from v3 --
+per TRMNL's framework docs, Layout height is calculated automatically,
+and layout--center-y is the documented, correct way to vertically
+center a column layout's children.
+{% endcomment %}
+<style>
+  .yg-root, .yg-root * {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+  }
+</style>
+<div class="yg-root layout layout--col layout--center layout--center-y" style="padding:48px 18px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+  <div style="display:flex; gap:18px; margin-bottom:20px;">
+    {% for finished in goal.finished_books %}
+    <div style="text-align:center; width:90px;">
+      <img
+        src="{% if finished.cover_url != blank %}{{ finished.cover_url }}{% else %}https://covers.openlibrary.org/b/isbn/{{ finished.isbn }}-S.jpg{% endif %}"
+        alt="{{ finished.title }} cover"
+        style="width:87.5px; height:122.5px; border:1px solid #000; object-fit:cover;"
+        >
+      <div class="label" style="font-size:18px; line-height:1.2; margin-top:6px;">{{ finished.title }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="layout layout--row" style="width:100%; justify-content:space-between; align-items:baseline;">
+    <span class="label" style="font-size:28px;">{{ "now" | date: "%Y" }} Reading Goal</span>
+    <span class="value" style="font-size:40px;">{{ goal.books_read_this_year }} / {{ goal.yearly_goal }}</span>
+  </div>
+</div>

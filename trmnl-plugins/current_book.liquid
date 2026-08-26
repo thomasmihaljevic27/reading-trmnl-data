@@ -1,0 +1,47 @@
+{% comment %}
+CURRENT BOOK — Private Plugin, Polling strategy.
+Polling URL: https://raw.githubusercontent.com/thomasmihaljevic27/reading-trmnl-data/main/reading_data.json
+Only reads the `book` key from that JSON; ignores `streak` and `goal`.
+Cover art is built from the ISBN via Open Library's free cover API --
+no need to store or upload an image anywhere.
+v3: removed the inline "Currently Reading" label above the cover -- it
+duplicated the standard title_bar at the bottom, which already says the
+same thing.
+{% endcomment %}
+<style>
+  {% comment %} !important because TRMNL's framework CSS sets font-family
+  directly on .title/.value/.label/.description -- a font-family set on a
+  parent div can't win against that (those are direct rule matches, not
+  inherited values, so inheritance never gets a chance to apply). {% endcomment %}
+  .cb-root, .cb-root * {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+  }
+</style>
+<div class="cb-root layout layout--col layout--center-x" style="height:100%; padding:10px; box-sizing:border-box;">
+  <img
+    src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg"
+    alt="{{ book.title }} cover"
+    style="max-height:55%; border:1px solid #000; margin:8px 0;"
+    >
+  {% comment %}
+    Guarded against total_pages being 0 or missing -- dividing by zero
+    produced a NaN Liquid error. Falls back to pct = 0 rather than
+    crashing the whole plugin render.
+  {% endcomment %}
+  {% assign pct = 0 %}
+  {% if book.total_pages and book.total_pages > 0 %}
+  {% assign pct = book.current_page | times: 100.0 | divided_by: book.total_pages %}
+  {% endif %}
+  <div class="layout layout--col layout--left" style="width:100%;">
+    <span class="title title--large">{{ book.title }}</span>
+    <span class="description" style="font-size:22px;">by {{ book.author }}</span>
+    <div class="value value--large" style="margin-top:8px;">{{ book.current_page }} / {{ book.total_pages }}</div>
+    <div class="label" style="font-size:30px;">{{ pct | round }}% complete</div>
+    <div style="width:100%; height:16px; border:1px solid #000; margin-top:6px;">
+      <div style="width:{{ pct }}%; height:100%; background:#000;"></div>
+    </div>
+  </div>
+</div>
+<div class="title_bar">
+  <span class="title">Currently Reading</span>
+</div>

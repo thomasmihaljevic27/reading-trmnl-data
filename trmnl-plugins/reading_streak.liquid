@@ -1,0 +1,52 @@
+{% comment %}
+READING STREAK — Private Plugin, Polling strategy.
+Same polling URL as the other two plugins; only reads the `streak` key.
+v4: removed the inline height:100% from the outer wrapper -- per TRMNL's
+framework docs, Layout height is calculated automatically by the
+platform, and forcing height:100% on top of that likely collapsed the
+container to its intrinsic content height instead of the real available
+space. Letting TRMNL own the height and just using layout--row/col
+classes lets content actually fill the real space.
+{% endcomment %}
+<style>
+  .rs-root, .rs-root * {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+  }
+</style>
+<div class="rs-root layout layout--row layout--center-y" style="padding:14px 18px; box-sizing:border-box;">
+  <div class="layout layout--col layout--center" style="flex:1; text-align:center;">
+    <div class="value" style="font-size:60px; display:flex; align-items:center; justify-content:center; gap:10px;">
+      🔥{{ streak.current_streak }}
+    </div>
+    <div class="label" style="font-size:30px; margin-top:8px;">Day Streak</div>
+  </div>
+  <div class="layout layout--col layout--center" style="flex:1;">
+    <div class="label" style="font-size:30px; margin-bottom:0;">{{ "now" | date: "%B %Y" }}</div>
+    <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:7px;">
+      {% comment %} leading blank cells so day 1 lands on the correct weekday column {% endcomment %}
+      {% if streak.first_weekday > 0 %}
+        {% for i in (1..streak.first_weekday) %}
+          <div></div>
+        {% endfor %}
+      {% endif %}
+      {% comment %}
+        `| plus: 0` coerces the date filter's string output into a
+        number for a reliable numeric comparison against `day`.
+      {% endcomment %}
+      {% assign today_day = "now" | date: "%-d" | plus: 0 %}
+      {% for day in (1..streak.days_in_month) %}
+        {% if streak.current_month_days_read contains day %}
+          {% assign cell_bg = '#000' %}
+        {% elsif day < today_day %}
+          {% assign cell_bg = '#bbb' %}
+        {% else %}
+          {% assign cell_bg = '#fff' %}
+        {% endif %}
+        <div style="width:25px; height:25px; border:1px solid #000; background:{{ cell_bg }};"></div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="title_bar">
+  <span class="title">Reading Streak</span>
+</div>
