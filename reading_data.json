@@ -3,7 +3,7 @@
     "title": "Dungeon Crawler Carl",
     "author": "Matt Dinniman",
     "isbn": "9798217287161",
-    "current_page": 402,
+    "current_page": 427,
     "total_pages": 427
   },
   "streak": {
@@ -33,9 +33,10 @@
       "2026-09-13",
       "2026-09-14",
       "2026-09-15",
-      "2026-09-16"
+      "2026-09-16",
+      "2026-09-17"
     ],
-    "current_streak": 7,
+    "current_streak": 8,
     "days_in_month": 30,
     "first_weekday": 2,
     "current_month_days_read": [
@@ -47,7 +48,8 @@
       13,
       14,
       15,
-      16
+      16,
+      17
     ]
   },
   "goal": {
@@ -67,10 +69,15 @@
         "title": "Children of Dune",
         "author": "Frank Herbert",
         "isbn": "9780593098240"
+      },
+      {
+        "title": "Dungeon Crawler Carl",
+        "author": "Matt Dinniman",
+        "isbn": "9780593820247"
       }
     ],
-    "books_read_this_year": 3,
+    "books_read_this_year": 4,
     "yearly_goal": 5
   },
-  "last_updated": "2026-09-16T18:03:39.293156+00:00"
+  "last_updated": "2026-09-17T17:37:02.047453+00:00"
 }
