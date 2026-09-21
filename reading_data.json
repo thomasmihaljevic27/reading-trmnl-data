@@ -1,10 +1,10 @@
 {
   "book": {
-    "title": "Dungeon Crawler Carl",
-    "author": "Matt Dinniman",
-    "isbn": "9798217287161",
-    "current_page": 427,
-    "total_pages": 427
+    "title": "The Rebel League",
+    "author": "Ed Willes",
+    "isbn": "9781299166288",
+    "current_page": 70,
+    "total_pages": 261
   },
   "streak": {
     "days_read": [
@@ -34,9 +34,10 @@
       "2026-09-14",
       "2026-09-15",
       "2026-09-16",
-      "2026-09-17"
+      "2026-09-17",
+      "2026-09-21"
     ],
-    "current_streak": 8,
+    "current_streak": 1,
     "days_in_month": 30,
     "first_weekday": 2,
     "current_month_days_read": [
@@ -49,7 +50,8 @@
       14,
       15,
       16,
-      17
+      17,
+      21
     ]
   },
   "goal": {
@@ -79,5 +81,5 @@
     "books_read_this_year": 4,
     "yearly_goal": 5
   },
-  "last_updated": "2026-09-17T17:37:02.047453+00:00"
+  "last_updated": "2026-09-21T21:36:56.950938+00:00"
 }
