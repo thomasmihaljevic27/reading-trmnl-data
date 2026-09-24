@@ -3,7 +3,7 @@
     "title": "The Rebel League",
     "author": "Ed Willes",
     "isbn": "9781299166288",
-    "current_page": 70,
+    "current_page": 78,
     "total_pages": 261
   },
   "streak": {
@@ -35,7 +35,8 @@
       "2026-09-15",
       "2026-09-16",
       "2026-09-17",
-      "2026-09-21"
+      "2026-09-21",
+      "2026-09-24"
     ],
     "current_streak": 1,
     "days_in_month": 30,
@@ -51,7 +52,8 @@
       15,
       16,
       17,
-      21
+      21,
+      24
     ]
   },
   "goal": {
@@ -81,5 +83,5 @@
     "books_read_this_year": 4,
     "yearly_goal": 5
   },
-  "last_updated": "2026-09-21T21:36:56.950938+00:00"
+  "last_updated": "2026-09-24T04:05:18.421313+00:00"
 }
